@@ -44,14 +44,8 @@ $_item_height: 320px;
         bottom: 0;
         width: $_item_width;
         height: $_item_height;
-        background: blue;
-        //transform: translateY(-50%);
         margin: auto;
         transition-duration: 0.5s;
-
-        &:nth-child(even) {
-            background: red;
-        }
 
         &::after {
             color: red;
@@ -74,10 +68,5 @@ $_item_height: 320px;
         position: absolute;
         width: $_item_width;
         height: $_item_height;
-        //background: red;
-
-        &:nth-child(even) {
-            //background: blue;
-        }
     }
 }
