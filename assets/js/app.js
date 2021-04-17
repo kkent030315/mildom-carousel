@@ -7,7 +7,6 @@ class MildomCarousel {
   #maxNumberOfItemsToDisplay = 5;
   #maxDepth = 2;
   #scale = 0.25;
-  #currentCarouselNumber = 0;
   #swapInterval = 2;
 
   constructor({ debug = false, rootNodeId, maxDepth = 2, swapInterval = 2 }) {
@@ -200,9 +199,9 @@ class MildomCarousel {
     /**
      * Reset the primary carousel style
      */
-    this.#setScale(this.#currentCarouselNumber, 1);
-    this.#setLeft(this.#currentCarouselNumber, 0);
-    this.#setZIndex(this.#currentCarouselNumber, this.#numberOfItems);
+    this.#setScale(0, 1);
+    this.#setLeft(0, 0);
+    this.#setZIndex(0, this.#numberOfItems);
 
     this.#log(`repositioning carousels...`);
 
@@ -214,7 +213,7 @@ class MildomCarousel {
        * |            n --->       |
        * +-------------------------+
        */
-      const positiveNextNumber = this.#currentCarouselNumber + i;
+      const positiveNextNumber = i;
 
       /**
        * +-------------------------+
