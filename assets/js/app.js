@@ -161,6 +161,8 @@ class MildomCarousel {
     }
 
     this.#log(`[next] assigned successfully`);
+
+    this.#update();
   }
 
   #showAllNonOverflowedCarousels() {
@@ -244,15 +246,14 @@ class MildomCarousel {
     this.#log(`reposition done`);
   }
 
-  play() {
+  play({ clockwise }) {
     // already running
     if (this.#status === this.CAROUSEL_STATUS.RUNNING) {
       return false;
     }
 
     this.#intervalTimer = setInterval(() => {
-      this.next();
-      this.#update();
+      this.next(clockwise);
     }, this.#swapInterval * this.SECONDS);
 
     this.#status = this.CAROUSEL_STATUS.RUNNING;
@@ -279,5 +280,5 @@ $(() => {
     swapInterval: 2,
   });
 
-  carousel.play();
+  carousel.play({ clockwise: false });
 });
