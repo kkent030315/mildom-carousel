@@ -6,5 +6,5 @@
 
 # Revision
 
-- [ ] Carousel moves weirdly when it has > 5 entries
-- [x] Venus
+- [ ] Support for 5 > entries
+  - [ ] Carousel moves weirdly when it has > 5 entries
