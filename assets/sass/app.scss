@@ -1,0 +1,52 @@
+@import "_variables";
+@import "_mixins";
+@import "_animations";
+@import "components/carousel";
+
+html {
+    font-family: "Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: $color-font;
+    word-spacing: 1px;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+}
+
+body {
+    background: $color-background;
+    color: $color-font;
+    width: 100%;
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.innerContainer {
+    display: flex;
+    flex: 1 auto;
+    width: 80%;
+    max-width: 1024px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+}
+
+.main {
+    background: $color-background;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1 auto;
+}
