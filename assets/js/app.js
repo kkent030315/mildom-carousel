@@ -8,13 +8,13 @@ class MildomCarousel {
   #maxDepth = 2;
   #scale = 0.25;
   #swapInterval = 2;
+  #intervalTimer = null;
 
-  constructor({ debug = false, rootNodeId, maxDepth = 2, swapInterval = 2 }) {
+  constructor({ debug = false, rootNodeId, swapInterval = 2 }) {
     this.#debug = debug;
     this.#rootNodeId = rootNodeId || "carouselRoot";
     this.#$rootNode = $(`#${this.#rootNodeId}`);
     this.#numberOfItems = this.#$rootNode.children().length;
-    this.#maxDepth = maxDepth;
     this.#swapInterval = swapInterval;
 
     Object.defineProperty(this, `SECONDS`, {
@@ -33,7 +33,7 @@ class MildomCarousel {
       },
     });
 
-    this.#status = this.CAROUSEL_STATUS.RUNNING;
+    this.#status = this.CAROUSEL_STATUS.STOPPED;
 
     this.#init();
 
@@ -54,11 +54,6 @@ class MildomCarousel {
     this.#update();
     this.#showAllNonOverflowedCarousels();
     this.#hideAllOverflowedCarousels();
-
-    setInterval(() => {
-      this.next();
-      this.#update();
-    }, this.#swapInterval * this.SECONDS);
   }
 
   #eachItem(_callback) {
@@ -255,6 +250,12 @@ class MildomCarousel {
       return false;
     }
 
+    this.#intervalTimer = setInterval(() => {
+      this.next();
+      this.#update();
+    }, this.#swapInterval * this.SECONDS);
+
+    this.#status = this.CAROUSEL_STATUS.RUNNING;
     return true;
   }
 
@@ -264,6 +265,9 @@ class MildomCarousel {
       return false;
     }
 
+    clearInterval(this.#intervalTimer);
+
+    this.#status = this.CAROUSEL_STATUS.STOPPED;
     return true;
   }
 }
@@ -272,5 +276,8 @@ $(() => {
   const carousel = new MildomCarousel({
     debug: true,
     rootNodeId: "carouselRoot",
+    swapInterval: 2,
   });
+
+  carousel.play();
 });
